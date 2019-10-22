@@ -8,15 +8,40 @@ import java.util.List;
 public class HouseService {
     public List<House> houses = new ArrayList<>();
 
-    public List<House> searchForArea(String text) {
+
+    public List<House> searchForDistrict(String text) {
+
         for (House house : houses) {
-            if(text == house.getArea()) {
-                System.out.println(house.getCategory() + " " + house.getPrice() + "руб. "
-                        + house.getRooms() + " комнаты");
+            boolean checkText = house.getDistrict().toLowerCase()
+                    .contains(text.toLowerCase());
+
+            if (house.getBuyType().equals("Снять") && checkText) {
+                house.printInfo();
+                house.printRentPrice();
+            }
+
+            if (house.getBuyType().equals("Купить") && checkText) {
+                house.printInfo();
+                house.printBuyPrice();
             }
         }
         return houses;
     }
 
+    public List<House> searchByPrice(String buyType, int minPrice, int maxPrice) {
 
+        for (House house : houses) {
+            if (buyType.equals("Купить") && house.getPrice() <= maxPrice
+                    && house.getPrice() > minPrice) {
+                house.printInfo();
+                house.printBuyPrice();
+            }
+            if (buyType.equals("Снять") && house.getPrice() <= maxPrice
+                    && house.getPrice() > minPrice) {
+                house.printInfo();
+                house.printRentPrice();
+            }
+        }
+        return houses;
+    }
 }

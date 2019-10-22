@@ -6,39 +6,43 @@ public class House {
     private String category;
     private String houseType;
     private int rooms;
+    private int area;
     private int price;
-    private String area;
-    // private String image;
+    private String district;
 
-
-    public House(long id, String buyType, String category,
-                 String houseType, int rooms, int price, String area) {
+    public House(long id, String buyType, String category, String houseType,
+                 int rooms, int area, int price, String district) {
         this.id = id;
         this.buyType = buyType;
         this.category = category;
         this.houseType = houseType;
         this.rooms = rooms;
-        this.price = price;
         this.area = area;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getArea() {
-        return area;
+        this.price = price;
+        this.district = district;
     }
 
     public String getBuyType() {
         return buyType;
     }
-
-    public String getCategory() {
-        return category;
+    public int getPrice() {
+        return price;
+    }
+    public String getDistrict() {
+        return district;
     }
 
-    public int getRooms() {
-        return rooms;
+    public void printInfo() {
+        System.out.println(rooms + "-комн. "  + category + ", " + area + " м2 \n"
+                + district + " район (" + houseType +  ") № объявл. " + id );
     }
+
+    public void printBuyPrice() {
+        System.out.println("Цена: " + price + " руб.\n");
+    }
+
+    public void printRentPrice() {
+        System.out.println("Цена: " + price + " руб./месяц.\n");
+    }
+
 }
