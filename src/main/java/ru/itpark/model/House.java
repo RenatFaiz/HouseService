@@ -25,24 +25,19 @@ public class House {
     public String getBuyType() {
         return buyType;
     }
+
     public int getPrice() {
         return price;
     }
+
     public String getDistrict() {
         return district;
     }
 
-    public void printInfo() {
-        System.out.println(rooms + "-комн. "  + category + ", " + area + " м2 \n"
-                + district + " район (" + houseType +  ") № объявл. " + id );
+    @Override
+    public String toString() {
+        return rooms + "-комн. " + category + ", " + area + " м2 "
+                + district + " район, цена " + price
+                + " руб. (" + houseType + ") № объявл. " + id + "\n";
     }
-
-    public void printBuyPrice() {
-        System.out.println("Цена: " + price + " руб.\n");
-    }
-
-    public void printRentPrice() {
-        System.out.println("Цена: " + price + " руб./месяц.\n");
-    }
-
 }

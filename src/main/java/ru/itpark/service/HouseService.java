@@ -8,40 +8,34 @@ import java.util.List;
 public class HouseService {
     public List<House> houses = new ArrayList<>();
 
-
-    public List<House> searchForDistrict(String text) {
-
+    public List<House> searchForDistrict(String buyType, String district) {
+        if (buyType.isEmpty() && district.isEmpty()) {
+            throw new IllegalArgumentException("Введите название района и тип");
+        }
+        List<House> results = new ArrayList<>();
         for (House house : houses) {
-            boolean checkText = house.getDistrict().toLowerCase()
-                    .contains(text.toLowerCase());
-
-            if (house.getBuyType().equals("Снять") && checkText) {
-                house.printInfo();
-                house.printRentPrice();
-            }
-
-            if (house.getBuyType().equals("Купить") && checkText) {
-                house.printInfo();
-                house.printBuyPrice();
+            if (house.getBuyType().toLowerCase().equalsIgnoreCase(buyType) &&
+                    house.getDistrict().toLowerCase().equalsIgnoreCase(district)) {
+                results.add(house);
             }
         }
-        return houses;
+        return results;
     }
 
     public List<House> searchByPrice(String buyType, int minPrice, int maxPrice) {
-
+        if (buyType.isEmpty()) {
+            throw new IllegalArgumentException("Введите тип: купить или снять");
+        }
+        if (minPrice < 0 && maxPrice <= 0) {
+            throw new IllegalArgumentException("Неверный диапазон цен");
+        }
+        List<House> results = new ArrayList<>();
         for (House house : houses) {
-            if (buyType.equals("Купить") && house.getPrice() <= maxPrice
-                    && house.getPrice() > minPrice) {
-                house.printInfo();
-                house.printBuyPrice();
-            }
-            if (buyType.equals("Снять") && house.getPrice() <= maxPrice
-                    && house.getPrice() > minPrice) {
-                house.printInfo();
-                house.printRentPrice();
+            if (house.getBuyType().toLowerCase().equalsIgnoreCase(buyType)
+                    && house.getPrice() >= minPrice && house.getPrice() <= maxPrice) {
+                results.add(house);
             }
         }
-        return houses;
+        return results;
     }
 }
