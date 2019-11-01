@@ -1,4 +1,4 @@
-# Поиск недвижимости 
+# Поиск недвижимости [![Build Status](https://travis-ci.com/RenatFaiz/HouseService.svg?branch=master)](https://travis-ci.com/RenatFaiz/HouseService)
 Создайте класс HouseService, который умеет хранить в себе список 
 объектов типа House (набор атрибутов для House определите исходя из 
 постановки задачи ниже). 
