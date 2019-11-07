@@ -9,7 +9,7 @@ public class HouseService {
     public List<House> houses = new ArrayList<>();
 
     public List<House> searchForDistrict(String buyType, String district) {
-        if (buyType.isEmpty() || district.isEmpty()) {
+        if (buyType.isEmpty() && district.isEmpty()) {
             throw new IllegalArgumentException("Введите название района и тип");
         }
         List<House> results = new ArrayList<>();
@@ -31,7 +31,7 @@ public class HouseService {
         if (buyType.isEmpty()) {
             throw new IllegalArgumentException("Введите тип: купить или снять");
         }
-        if (minPrice < 0 || maxPrice <= 0) {
+        if (minPrice < 0 && maxPrice <= 0) {
             throw new IllegalArgumentException("Неверный диапазон цен");
         }
         List<House> results = new ArrayList<>();
