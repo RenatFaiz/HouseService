@@ -30,9 +30,15 @@ public class HouseService {
             throw new IllegalArgumentException("Неверный диапазон цен");
         }
         List<House> results = new ArrayList<>();
+
         for (House house : houses) {
-            if (house.getBuyType().toLowerCase().equalsIgnoreCase(buyType)
-                    && house.getPrice() >= minPrice && house.getPrice() <= maxPrice) {
+            boolean isCondition = house.getBuyType().toLowerCase().equalsIgnoreCase(buyType);
+            boolean isPrice = house.getPrice() >= minPrice && house.getPrice() <= maxPrice;
+
+            if (!isCondition) {
+                continue;
+            }
+            if (isPrice) {
                 results.add(house);
             }
         }
