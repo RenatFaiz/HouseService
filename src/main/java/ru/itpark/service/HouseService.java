@@ -14,8 +14,13 @@ public class HouseService {
         }
         List<House> results = new ArrayList<>();
         for (House house : houses) {
-            if (house.getBuyType().toLowerCase().equalsIgnoreCase(buyType) &&
-                    house.getDistrict().toLowerCase().equalsIgnoreCase(district)) {
+            boolean isType = house.getBuyType().toLowerCase().equalsIgnoreCase(buyType);
+            boolean isDistrict = house.getDistrict().toLowerCase().equalsIgnoreCase(district);
+
+            if (!isType) {
+                continue;
+            }
+            if (isDistrict) {
                 results.add(house);
             }
         }
@@ -30,12 +35,11 @@ public class HouseService {
             throw new IllegalArgumentException("Неверный диапазон цен");
         }
         List<House> results = new ArrayList<>();
-
         for (House house : houses) {
-            boolean isCondition = house.getBuyType().toLowerCase().equalsIgnoreCase(buyType);
+            boolean isType = house.getBuyType().toLowerCase().equalsIgnoreCase(buyType);
             boolean isPrice = house.getPrice() >= minPrice && house.getPrice() <= maxPrice;
 
-            if (!isCondition) {
+            if (!isType) {
                 continue;
             }
             if (isPrice) {

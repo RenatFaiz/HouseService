@@ -14,7 +14,7 @@ public class Main {
                 "Вторичка", 3, 100, 5_500_000, "Кировский"));
 
         System.out.println(service.searchForDistrict("снять", "кировский"));
-        System.out.println(service.searchByPrice("Купить", 2_000_000, 2_600_000));
-        System.out.println(service.searchByPrice("Снять", 5_000, 15_000));
+        System.out.println(service.searchByPrice("купить", 2_000_000, 2_600_000));
+        System.out.println(service.searchByPrice("снять", 5_000, 15_000));
     }
 }
